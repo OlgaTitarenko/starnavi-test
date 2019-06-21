@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 span {
@@ -9,6 +10,43 @@ span {
   border: 1px solid black;
 }
 
+.App:first-child{
+  border-right: 2px solid gray;
+}
+.prepare-game select {
+  background-color: lightblue;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
+}
+.prepare-game input {
+  background-color: lightyellow;
+  border: 1px solid yellow;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
+}
+.prepare-game button {
+  background-color: lightpink;
+  border: 2px solid pink;
+  margin: 10px;
+  padding: 5px;
+}
+
+
+.leader-item{
+  width: 500px;
+}
+.leader-item:nth-child(n) {
+  background-color: lightgray;
+  margin: 5px;
+}
+.leader-item span {
+  border:none;
+  padding: 10px;
+  display: inline;
+}
 .blue{
   background-color: blue;
 }

@@ -111,7 +111,8 @@ class App extends React.Component {
             gameField,
             timer: null
           }
-        })
+        });
+          this.setRandomMove(this.state.userMode.field * this.state.userMode.field);
       }
     }
     else if (this.state.gameField[clickKey] === 'blue') {
@@ -122,9 +123,10 @@ class App extends React.Component {
           gameField,
           timer: null
         }
-      })
+      });
+        this.setRandomMove(this.state.userMode.field * this.state.userMode.field);
     }
-    this.setRandomMove(this.state.userMode.field * this.state.userMode.field);
+
   }
 
   checkWinner () {
@@ -139,10 +141,22 @@ class App extends React.Component {
 
     if (countRed + countGreen > this.state.gameField.length / 2) {
       const winner =  (countGreen > countRed) ? this.state.name : 'Computer';
-      console.log(winner);
+       (async () => {
+            const rawResponse = await fetch('https://starnavi-frontend-test-task.herokuapp.com/winners', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({winner: winner, date:(new Date()).toString()})
+            });
+            const content = await rawResponse.json();
+            console.log(content);
+        })();
       this.setState( {
           winner: winner
       })
+       this.getLeaderBord();
     }
   }
 
@@ -154,49 +168,61 @@ class App extends React.Component {
     const field = this.state.userMode.field;
     let message = (this.state.message === '')
         ? 'Message here'
-        : this.state.message + ' move';
+        : 'Hello ' + this.state.message;
     if (this.state.winner !== null) {
       message = 'Winner ' + this.state.winner;
     }
+
     return (
         <div className="App">
-          <div className="prepare-game">
-            <select
-                name="game-set"
-                onChange={(event) => this.setGameMode(event.target.value)}
-            >
-              <option value="start">Pick game mode</option>
-              {dataArrKey.map( item =>
-                <option
-                    value={item}
-                    key={item+100}
-                > {item} </option>
-              )}
-            </select>
-            <input type="text"
-                   value={this.state.name}
-                   onChange={(event) => this.setName(event.target.value)}
-                   placeholder="Enter your name"/>
-            <button onClick={ () => this.onButtonClick() }>
-              {this.state.button}
-            </button>
-          </div>
-          <div className="game-field" >
-            <p className="game-info">{message}</p>
-              <div onClick={(event) => this.onMakeMove(event)}>
-                <p>{field}</p>
-                {this.state.gameField.map((item,key) => {
-                  return(
-                    <>
+          <div>
+              <div className="prepare-game">
+                  <select
+                      name="game-set"
+                      onChange={(event) => this.setGameMode(event.target.value)}
+                  >
+                      <option value="start">Pick game mode</option>
+                      {dataArrKey.map( item =>
+                          <option
+                              value={item}
+                              key={item}
+                          > {item} </option>
+                      )}
+                  </select>
+                  <input type="text"
+                         value={this.state.name}
+                         onChange={(event) => this.setName(event.target.value)}
+                         placeholder="Enter your name"/>
+                  <button onClick={ () => this.onButtonClick() }>
+                      {this.state.button}
+                  </button>
+              </div>
+              <div className="game-field" >
+                  <p className="game-info">{message}</p>
+                  <div onClick={(event) => this.onMakeMove(event)}>
+                      {this.state.gameField.map((item,key) => {
+                          return(
+                              <React.Fragment key={key*200} >
                       <span
                           key={key}
                           className={item}
                           data-set={key}>
                       </span>
-                      {((key+1)%field === 0) ? <br key={key*200}/> : ''}
-                    </>
-                  )})}
+                                  {((key+1) % field === 0) ? <br key={key*200}/> : ''}
+                              </React.Fragment>
+                          )})}
+                  </div>
               </div>
+          </div>
+          <div>
+              <h2>Leader Bord</h2>
+            <div className="leader-item">
+                {this.state.leaderBoard.map(item  => {
+                   return <div
+                        key={item.id}
+                   > <span>{item.winner}</span> <span>{item.date}</span> </div>
+                })}
+            </div>
           </div>
         </div>
     );
