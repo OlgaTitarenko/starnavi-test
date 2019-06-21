@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c44dc537eb7d6d5f961e072083bb2354",
+    "revision": "99e16ec0d0ffbc6c7af3927945937ccc",
     "url": "/starnavi-test/index.html"
   },
   {
-    "revision": "40f87915f0a91c1533d2",
+    "revision": "51183df8081695cb9c29",
     "url": "/starnavi-test/static/css/main.8d968bab.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/starnavi-test/static/js/2.fb726950.chunk.js"
   },
   {
-    "revision": "40f87915f0a91c1533d2",
-    "url": "/starnavi-test/static/js/main.7a8c3104.chunk.js"
+    "revision": "51183df8081695cb9c29",
+    "url": "/starnavi-test/static/js/main.ed1e2720.chunk.js"
   },
   {
     "revision": "102bfd312c2172e83bbf",
