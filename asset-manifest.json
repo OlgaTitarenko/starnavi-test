@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/starnavi-test/static/css/main.8d968bab.chunk.css",
-    "main.js": "/starnavi-test/static/js/main.15e73eb8.chunk.js",
-    "main.js.map": "/starnavi-test/static/js/main.15e73eb8.chunk.js.map",
+    "main.js": "/starnavi-test/static/js/main.027d3dac.chunk.js",
+    "main.js.map": "/starnavi-test/static/js/main.027d3dac.chunk.js.map",
     "runtime~main.js": "/starnavi-test/static/js/runtime~main.18184c18.js",
     "runtime~main.js.map": "/starnavi-test/static/js/runtime~main.18184c18.js.map",
     "static/js/2.fb726950.chunk.js": "/starnavi-test/static/js/2.fb726950.chunk.js",
     "static/js/2.fb726950.chunk.js.map": "/starnavi-test/static/js/2.fb726950.chunk.js.map",
     "index.html": "/starnavi-test/index.html",
-    "precache-manifest.208f7ca39c426d98b9d69dbc3a16fd04.js": "/starnavi-test/precache-manifest.208f7ca39c426d98b9d69dbc3a16fd04.js",
+    "precache-manifest.c1272b0bd9a9de13762490ac32e67e28.js": "/starnavi-test/precache-manifest.c1272b0bd9a9de13762490ac32e67e28.js",
     "service-worker.js": "/starnavi-test/service-worker.js",
     "static/css/main.8d968bab.chunk.css.map": "/starnavi-test/static/css/main.8d968bab.chunk.css.map"
   }
