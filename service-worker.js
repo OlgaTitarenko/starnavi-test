@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/starnavi-test/precache-manifest.16688d50840469d5c5cdafe3ced1afe5.js"
+  "/starnavi-test/precache-manifest.208f7ca39c426d98b9d69dbc3a16fd04.js"
 );
 
 self.addEventListener('message', (event) => {
