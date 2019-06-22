@@ -68,6 +68,7 @@ class App extends React.Component {
   }
 
   setRandomMove(fieldlength) {
+     if ( this.checkWinner()) return;
     for (let i = 0; i<(fieldlength); i++ ) {
       const randomKey = Math.floor(Math.random() * fieldlength);
       if (this.state.gameField[randomKey] === '') {
@@ -96,7 +97,6 @@ class App extends React.Component {
   onMakeMove(event) {
     const clickKey = event.target.dataset.set;
     const time = new Date();
-    this.checkWinner();
 
     if ( this.state.winner !== null) {return;}
 
@@ -141,6 +141,17 @@ class App extends React.Component {
 
     if (countRed + countGreen > this.state.gameField.length / 2) {
       const winner =  (countGreen > countRed) ? this.state.name : 'Computer';
+      const date = new Date();
+      const options = {
+            hour: 'numeric',
+            minute: 'numeric',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+      const winDate = date.toLocaleDateString('en-US', options);
+      console.log(winDate);
+
        (async () => {
             const rawResponse = await fetch('https://starnavi-frontend-test-task.herokuapp.com/winners', {
                 method: 'POST',
@@ -148,16 +159,18 @@ class App extends React.Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({winner: winner, date:(new Date()).toString()})
+                body: JSON.stringify({winner: winner, date:winDate})
             });
             const content = await rawResponse.json();
-            console.log(content);
         })();
+
       this.setState( {
           winner: winner
-      })
+      });
        this.getLeaderBord();
+      return true;
     }
+    return false;
   }
 
   render(){
